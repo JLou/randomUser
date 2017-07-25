@@ -6,21 +6,31 @@ import data from './List.json';
 
 class App extends Component {
 
-  state = {idSelected: ""}
-
-
+  state = {idSelected: "", count: 0, limit: 1000}
 
   random = () => {
 
-    var result = (Math.floor(((data.length)-0)*Math.random())+0); 
+    var that = this;
 
-    if (result === this.state.idSelected){
-      this.random();
-    } else {
-       this.setState({idSelected: result});
-    }
-   
-    console.log(result);
+    setTimeout(() => { 
+
+      var result = (Math.floor(((data.length)-0)*Math.random())+0); 
+
+      if (result !== that.state.idSelected){
+        that.setState({idSelected: result});
+      }
+      
+      if(that.state.count !== 500){
+          that.random();
+      }
+  
+      that.setState((prevState, props) => ({
+        count: prevState.count + 1,
+        limit: prevState.limt / (prevState.count + 1)
+      }));
+
+      console.log(result);
+  }, that.state.limit);
   }
 
   render() {
