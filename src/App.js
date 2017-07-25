@@ -6,7 +6,7 @@ import data from './List.json';
 
 class App extends Component {
 
-  state = {idSelected: "", count: 0, limit: 1000}
+  state = {idSelected: "", count: 0, limit: 300}
 
   random = () => {
 
@@ -20,13 +20,13 @@ class App extends Component {
         that.setState({idSelected: result});
       }
       
-      if(that.state.count !== 500){
+      if(that.state.count !== 10){
           that.random();
       }
   
       that.setState((prevState, props) => ({
         count: prevState.count + 1,
-        limit: prevState.limt / (prevState.count + 1)
+        limit: prevState.limit + 100
       }));
 
       console.log(result);
