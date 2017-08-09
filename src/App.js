@@ -8,10 +8,6 @@ class App extends Component {
 
   state = {idSelected: "", count: 0, limit: 100};
 
-  init = () => {
-      this.setState({idSelected: "", count: 0, limit: 100});
-  };
-
   random = () => {
 
     var that = this;
@@ -49,7 +45,7 @@ class App extends Component {
         </p>
 
        <List people={data} idSelected={this.state.idSelected}/>
-       <button type="submit" onClick={() => {this.init(), this.random()}}>Go !</button>
+       <button type="submit" onClick={this.random}>Go !</button>
           
       </div>
     );
