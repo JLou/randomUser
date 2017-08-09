@@ -6,15 +6,19 @@ import data from './List.json';
 
 class App extends Component {
 
-  state = {idSelected: "", count: 0, limit: 100}
+  state = {idSelected: "", count: 0, limit: 100};
+
+  init = () => {
+    this.setState({idSelected: "", count: 0, limit: 100});
+  };
 
   random = () => {
 
-    var that = this;
+    let that = this;
 
     setTimeout(() => { 
 
-      var result = (Math.floor(((data.length)-0)*Math.random())+0); 
+      let result = (Math.floor(((data.length)-0)*Math.random())+0);
 
       if (result !== that.state.idSelected){
         that.setState({idSelected: result});
@@ -30,8 +34,8 @@ class App extends Component {
       }));
 
       console.log(result);
-  }, that.state.limit);
-  }
+    }, that.state.limit);
+  };
 
   render() {
     return (
@@ -45,7 +49,7 @@ class App extends Component {
         </p>
 
        <List people={data} idSelected={this.state.idSelected}/>
-       <button type="submit" onClick={this.random}>Go !</button>
+       <button type="submit" onClick={() => {this.init(), this.random()}}>Go !</button>
           
       </div>
     );
